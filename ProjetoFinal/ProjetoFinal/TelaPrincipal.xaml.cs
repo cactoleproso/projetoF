@@ -23,5 +23,28 @@ namespace ProjetoFinal
         {
             InitializeComponent();
         }
+
+        private void CadastraBT_Click(object sender, RoutedEventArgs e)
+        {
+            new Cadastramento().Show();
+            this.Close();
+        }
+
+        private void PesquisaBT_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditaBT_Click(object sender, RoutedEventArgs e)
+        {
+            new Editar().Show();
+            this.Close();
+        }
+
+        private void OrganizaBT_Click(object sender, RoutedEventArgs e)
+        {
+            new Organizar().Show();
+            this.Close();
+        }
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
 
 namespace ProjetoFinal
 {
@@ -19,9 +20,73 @@ namespace ProjetoFinal
     /// </summary>
     public partial class Cadastramento : Window
     {
-        public Cadastramento()
+        private class Item
         {
+            public string Name;
+            public int Value;
+            public Item(string name, int value)
+            {
+                Name = name; Value = value;
+            }
+
+            public override string ToString()
+            {
+                // Generates the text shown in the combo box
+                return Name;
+            }
+
+        }
+
+            public Cadastramento()
+        {
+
             InitializeComponent();
+            NumInt.Items.Add(new Item("1", 1));
+            NumInt.Items.Add(new Item("2", 2));
+            NumInt.Items.Add(new Item("3", 3));
+
+            DiaPref.Items.Add(new Item("1", 1));
+        }
+        
+        private void CancelarBT_Click(object sender, RoutedEventArgs e)
+        {
+            new TelaPrincipal().Show();
+            this.Close();
+        }
+
+        private void CadastrarBT_Click(object sender, RoutedEventArgs e)
+        {
+            ConectarBD c = new ConectarBD();
+            int inst;
+            if (SIMradio.IsChecked == true)
+                inst = 1;
+            else
+                inst = 0;
+
+
+            int numintegrantes;
+            if (NumInt.SelectedValue != null)
+            {
+                numintegrantes = ((Item)NumInt.SelectedValue).Value;
+            }
+            else
+                numintegrantes = 0;
+
+            int diapreferencial;
+            if (DiaPref.SelectedValue != null)
+            {
+                //diapreferencial = (int)DiaPref.SelectedItem;
+                diapreferencial = ((Item)DiaPref.SelectedValue).Value;
+            }
+            else
+                diapreferencial = 0;
+
+            c.cadastrar(NomeBandaTxT.Text, numintegrantes , NomeBandaTxT.Text, diapreferencial , 1 );
+        }
+
+        private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

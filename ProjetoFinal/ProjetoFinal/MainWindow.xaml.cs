@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace ProjetoFinal
 {
@@ -24,10 +25,18 @@ namespace ProjetoFinal
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void LogarBT_Click(object sender, RoutedEventArgs e)
         {
-
+            ConectarBD conectar = new ConectarBD();
+            bool variavel = conectar.fazerlogin(UsuarioTxT.Text, SenhaTxT.Text);
+            if (variavel)
+            {
+                MessageBox.Show("Bem vindo!");
+                new TelaPrincipal().Show();
+                this.Close();
+            }
+            else
+                MessageBox.Show("usuario/senha incorreto");
         }
     }
 }

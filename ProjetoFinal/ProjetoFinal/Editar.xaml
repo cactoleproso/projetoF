@@ -1,9 +1,9 @@
-﻿<Window x:Class="ProjetoFinal.Cadastramento"
+﻿<Window x:Class="ProjetoFinal.Editar"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Cadastramento" Height="279.305" Width="253.019" ResizeMode="NoResize">
+        Title="Editar" Height="279.305" Width="253.019" ResizeMode="NoResize">
     <Grid>
-        <Button x:Name="CadastrarBT" Content="Cadastrar" HorizontalAlignment="Left" Margin="109,203,0,0" VerticalAlignment="Top" Width="84" Height="30" Click="CadastrarBT_Click"/>
+        <Button x:Name="CadastrarBT" Content="Editar" HorizontalAlignment="Left" Margin="109,203,0,0" VerticalAlignment="Top" Width="84" Height="30"/>
         <Button x:Name="CancelarBT" Content="Cancelar" HorizontalAlignment="Left" Margin="10,203,0,0" VerticalAlignment="Top" Width="82" Height="30" Click="CancelarBT_Click"/>
         <Label Content="Nome da banda:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,15,0,0" Width="99"/>
         <Label Content="Número de integrantes:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,41,0,0" Width="143"/>
@@ -12,10 +12,8 @@
         <Label Content="Usará instrumentos da escola?" HorizontalAlignment="Left" Margin="10,117,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="NomeMusicaTxT" HorizontalAlignment="Left" Height="18" Margin="109,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="NomeBandaTxT" HorizontalAlignment="Left" Height="18" Margin="107,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="DiaPref" HorizontalAlignment="Left" Margin="107,98,0,0" VerticalAlignment="Top" Width="40" Height="19">
-        </ComboBox>
-        <ComboBox x:Name="NumInt" HorizontalAlignment="Left" Margin="143,45,0,0" VerticalAlignment="Top" Width="40" Height="19">
-        </ComboBox>
+        <ComboBox x:Name="DiaPref" HorizontalAlignment="Left" Margin="107,98,0,0" VerticalAlignment="Top" Width="40" Height="19"/>
+        <ComboBox x:Name="NumInt" HorizontalAlignment="Left" Margin="143,45,0,0" VerticalAlignment="Top" Width="50" Height="19"/>
         <RadioButton x:Name="SIMradio" Content="Sim" HorizontalAlignment="Left" Margin="186,121,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="NaoRadio" Content="Não" HorizontalAlignment="Left" Margin="186,139,0,0" VerticalAlignment="Top"/>
     </Grid>
