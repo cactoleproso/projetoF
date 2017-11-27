@@ -1,0 +1,15 @@
+﻿<Window x:Class="ProjetoFinal.TelaPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TelaPrincipal" Height="317.574" Width="387.866">
+    <Grid>
+        <ListBox x:Name="ListaBandas" HorizontalAlignment="Left" Height="239" VerticalAlignment="Top" Width="258" Margin="10,10,0,0"/>
+        <Label Content="Pesquisar banda:" HorizontalAlignment="Left" Margin="10,254,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="PesquisaTxT" HorizontalAlignment="Left" Height="23" Margin="109,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
+        <Button x:Name="PesquisaBT" Content="Pesquisar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="101" Margin="273,258,0,0"/>
+        <Button x:Name="CadastraBT" Content="Cadastrar" HorizontalAlignment="Left" Margin="273,10,0,0" VerticalAlignment="Top" Width="101" Height="87"/>
+        <Button x:Name="EditaBT" Content="Editar" HorizontalAlignment="Left" Margin="273,102,0,0" VerticalAlignment="Top" Width="101" Height="87"/>
+        <Button x:Name="OrganizaBT" Content="Organizar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="101" Margin="273,194,0,0" Height="55"/>
+
+    </Grid>
+</Window>
