@@ -21,9 +21,6 @@ namespace ProjetoFinal
     /// </summary>
     public partial class MainWindow : Window
     {
-        Thread lg;
-        private bool Logado = false;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -34,7 +31,7 @@ namespace ProjetoFinal
             ConectarBD conectar = new ConectarBD();
             bool variavel = conectar.fazerlogin(UsuarioTxT.Text, SenhaTxT.Text);
 
-            if (variavel)
+            if (variavel == true)
             {
                 MessageBox.Show("Bem vindo!");
                 this.Close();

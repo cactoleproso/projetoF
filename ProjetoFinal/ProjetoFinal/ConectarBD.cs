@@ -17,7 +17,7 @@ namespace ProjetoFinal
         public ConectarBD()
         {
             cmd = new MySqlCommand();
-            cmd.Connection = new MySqlConnection("Server=projeto;Database=test;Uid=root;Pwd=root");
+            cmd.Connection = new MySqlConnection("Server=localhost;Database=test;Uid=root;Pwd=root");
         }
         public bool fazerlogin(string nome , string senha)
         {
