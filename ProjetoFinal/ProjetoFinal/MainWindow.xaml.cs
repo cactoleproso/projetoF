@@ -28,7 +28,7 @@ namespace ProjetoFinal
         private void LogarBT_Click(object sender, RoutedEventArgs e)
         {
             ConectarBD conectar = new ConectarBD();
-            bool variavel = conectar.fazerlogin(UsuarioTxT.Text, SenhaTxT.Text);
+            bool variavel = conectar.fazerlogin(UsuarioTxT.Text, SenhaTxT.Password);
             if (variavel)
             {
                 MessageBox.Show("Bem vindo!");

@@ -44,8 +44,15 @@ namespace ProjetoFinal
             NumInt.Items.Add(new Item("1", 1));
             NumInt.Items.Add(new Item("2", 2));
             NumInt.Items.Add(new Item("3", 3));
+            NumInt.Items.Add(new Item("4", 4));
+            NumInt.Items.Add(new Item("5", 5));
+            NumInt.Items.Add(new Item("6", 6));
+            NumInt.Items.Add(new Item("7", 7));
+            NumInt.Items.Add(new Item("8", 8));
+            NumInt.Items.Add(new Item("9", 9));
 
             DiaPref.Items.Add(new Item("1", 1));
+            DiaPref.Items.Add(new Item("2", 2));
         }
         
         private void CancelarBT_Click(object sender, RoutedEventArgs e)
@@ -80,8 +87,16 @@ namespace ProjetoFinal
             }
             else
                 diapreferencial = 0;
+            if (c.cadastrar(NomeBandaTxT.Text, numintegrantes, NomeBandaTxT.Text, diapreferencial, inst))
+            {
+                MessageBox.Show("Cadastro feito com sucesso!");
+                new TelaPrincipal().Show();
+                this.Close();
+            }
+            else
+                MessageBox.Show("Algum erro ocorreu");
 
-            c.cadastrar(NomeBandaTxT.Text, numintegrantes , NomeBandaTxT.Text, diapreferencial , 1 );
+            
         }
 
         private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)

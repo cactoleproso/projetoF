@@ -6,7 +6,7 @@
         <Label Content="Usuário:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,34,171,0" Width="56"/>
         <Label Content="Senha:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,60,164,0" Width="56"/>
         <TextBox x:Name="UsuarioTxT" HorizontalAlignment="Left" Height="23" Margin="61,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="SenhaTxT" HorizontalAlignment="Left" Height="23" Margin="61,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox x:Name="SenhaTxT" HorizontalAlignment="Left" Margin="61,60,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
         <Button x:Name="LogarBT" Content="Logar" HorizontalAlignment="Left" Margin="106,119,0,0" VerticalAlignment="Top" Width="75" Click="LogarBT_Click" IsDefault="True"/>
 
     </Grid>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
 
 namespace ProjetoFinal
 {
@@ -22,17 +23,34 @@ namespace ProjetoFinal
         public TelaPrincipal()
         {
             InitializeComponent();
+            ListaBandas.Items.Clear();
+            ConectarBD c = new ConectarBD();
+            MySqlCommand cmd;
+            cmd = c.atualizarlista(PesquisaTxT.Text);
+            try
+            {
+                MySqlDataReader ler;
+                ler = cmd.ExecuteReader();
+                while (ler.Read())
+                {
+                    string snome = ler.GetString("nome");
+                    ListaBandas.Items.Add(snome);
+                }
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show(i.Message);
+            }
+            finally
+            {
+                c.atualizarlista(PesquisaTxT.Text).Connection.Close();
+            }
         }
 
         private void CadastraBT_Click(object sender, RoutedEventArgs e)
         {
             new Cadastramento().Show();
             this.Close();
-        }
-
-        private void PesquisaBT_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void EditaBT_Click(object sender, RoutedEventArgs e)
@@ -45,6 +63,48 @@ namespace ProjetoFinal
         {
             new Organizar().Show();
             this.Close();
+        }
+
+        private void PesquisaTxT_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //atualizar a listbox de bandas toda vez que o textbox for alterado, caso fosse outra maneira não seria possível filtrar a listbox
+            ListaBandas.Items.Clear();
+            ConectarBD c = new ConectarBD();
+            MySqlCommand cmd;
+            cmd = c.atualizarlista(PesquisaTxT.Text);
+            try
+            {
+                MySqlDataReader ler;
+                ler = cmd.ExecuteReader();
+                while (ler.Read())
+                {
+                    string snome = ler.GetString("nome");
+                    ListaBandas.Items.Add(snome);
+                }
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show(i.Message);
+            }
+            finally
+            {
+                c.atualizarlista(PesquisaTxT.Text).Connection.Close();
+            }
+
+
+
+            //filtrar o nome das bandas
+            List<string> items = new List<string>();
+            for (int i = 0; i < ListaBandas.Items.Count; i++)
+            {
+                items.Add(ListaBandas.Items[i].ToString());
+            }
+            ListaBandas.Items.Clear();
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].ToString().ToLower().Contains(PesquisaTxT.Text))
+                    ListaBandas.Items.Add(items[i]);
+            }
         }
     }
 }

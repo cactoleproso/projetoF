@@ -44,10 +44,11 @@ namespace ProjetoFinal
             return result;
         }
 
-        public void cadastrar(string nome, int numero, string nomemusica, int dia, int instru)
+        public bool cadastrar(string nome, int numero, string nomemusica, int dia, int instru)
         {
+            bool funcionou = false;
             cmd.Connection.Open();
-            cmd.CommandText = "INSERT INTO login (nome, numint, nomemusica, diapref, instru) VALUES (@nome, @numint, @nomemusica, @diapref, @instru);";
+            cmd.CommandText = "INSERT INTO bandas (nome, numint, nomemusica, diapref, instru) VALUES (@nome, @numint, @nomemusica, @diapref, @instru);";
             cmd.Parameters.AddWithValue("@nome", nome);
             cmd.Parameters.AddWithValue("@numint", numero);
             cmd.Parameters.AddWithValue("@nomemusica", nome);
@@ -56,7 +57,7 @@ namespace ProjetoFinal
             try
             {
                 cmd.ExecuteNonQuery();
-                cmd.Connection.Close();
+                return funcionou = true;
             }
             catch (MySqlException a)
             {
@@ -68,5 +69,37 @@ namespace ProjetoFinal
             }
         }
 
+        public MySqlCommand atualizarlista(string nome)
+        {
+            cmd.Connection = new MySqlConnection("Server=localhost;Database=test;Uid=root;Pwd=root");
+            cmd.CommandText = "SELECT * FROM bandas;";
+            cmd.Connection.Open();
+            return cmd;
+        }
+
+        public bool atualizar(string nome, string nomeed, int numero, string nomemusica, int dia, int instru)
+        {
+            bool funcionou = false;
+            cmd.Connection.Open();
+            cmd.CommandText = "UPDATE bandas SET nome = @nome1  WHERE nome = @nome"//"INSERT INTO bandas (nome, numint, nomemusica, diapref, instru) VALUES (@nome, @numint, @nomemusica, @diapref, @instru);";
+            cmd.Parameters.AddWithValue("@nome", nome);
+            cmd.Parameters.AddWithValue("@numint", numero);
+            cmd.Parameters.AddWithValue("@nomemusica", nome);
+            cmd.Parameters.AddWithValue("@diapref", dia);
+            cmd.Parameters.AddWithValue("@instru", instru);
+            try
+            {
+                cmd.ExecuteNonQuery();
+                return funcionou = true;
+            }
+            catch (MySqlException a)
+            {
+                throw new Exception(a.Message);
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+        }
     }
 }
