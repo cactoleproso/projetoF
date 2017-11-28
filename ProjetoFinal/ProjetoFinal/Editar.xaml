@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Editar" Height="279.305" Width="253.019" ResizeMode="NoResize">
     <Grid>
-        <Button x:Name="CadastrarBT" Content="Editar" HorizontalAlignment="Left" Margin="109,203,0,0" VerticalAlignment="Top" Width="84" Height="30" Click="CadastrarBT_Click"/>
+        <Button x:Name="EditarBT" Content="Editar" HorizontalAlignment="Left" Margin="109,203,0,0" VerticalAlignment="Top" Width="84" Height="30" Click="EditarBT_Click"/>
         <Button x:Name="CancelarBT" Content="Cancelar" HorizontalAlignment="Left" Margin="10,203,0,0" VerticalAlignment="Top" Width="82" Height="30" Click="CancelarBT_Click"/>
         <Label Content="Nome da banda:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,15,0,0" Width="99"/>
         <Label Content="Número de integrantes:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,41,0,0" Width="143"/>

@@ -10,6 +10,8 @@ namespace ProjetoFinal
     {
         private Banda Banda { get; set; }
         private ConectarBD con { get; set; }
+
+        const string qr = "INSERT INTO bandas(nome, numint, nomemusica, diapref, instru) VALUES(@nome, @numint, @nomemusica, @diapref, @instru);";
         public Cadastro(Banda Banda)
         {
             this.Banda = Banda;
@@ -18,11 +20,10 @@ namespace ProjetoFinal
 
         public bool Cadastrar()
         {
-            string query = "INSERT INTO bandas(nome, numint, nomemusica, diapref, instru) VALUES(@nome, @numint, @nomemusica, @diapref, @instru);";
-            con.AddParameters(Banda, query);
+            con.AddParameters(this.Banda, qr);
             con.AbrirConexao();
 
-            if(con.Insert())
+            if(con.ExecuteNoN())
             {
                 con.FecharConexao();
                 return true;

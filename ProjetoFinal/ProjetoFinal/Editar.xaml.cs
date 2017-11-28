@@ -40,16 +40,10 @@ namespace ProjetoFinal
         {
             nomeantes = x;
             InitializeComponent();
-            NumInt.Items.Add(new Item("1", 1));
-            NumInt.Items.Add(new Item("2", 2));
-            NumInt.Items.Add(new Item("3", 3));
-            NumInt.Items.Add(new Item("4", 4));
-            NumInt.Items.Add(new Item("5", 5));
-            NumInt.Items.Add(new Item("6", 6));
-            NumInt.Items.Add(new Item("7", 7));
-            NumInt.Items.Add(new Item("8", 8));
-            NumInt.Items.Add(new Item("9", 9));
 
+            for(int i = 1; i < 10; i++)
+                NumInt.Items.Add(new Item(i.ToString(), i));
+            
             DiaPref.Items.Add(new Item("1", 1));
             DiaPref.Items.Add(new Item("2", 2));
         }
@@ -65,36 +59,37 @@ namespace ProjetoFinal
 
         }
 
-        private void CadastrarBT_Click(object sender, RoutedEventArgs e)
+        private void EditarBT_Click(object sender, RoutedEventArgs e)
         {
-            ConectarBD c = new ConectarBD();
-            int inst;
+           
+            var banda = new Banda();
+
+            banda.Nome = NomeBandaTxT.Text;
+            banda.NomeMusica = NomeMusicaTxT.Text;
+
             if (SIMradio.IsChecked == true)
-                inst = 1;
+                banda.Instrumento = 1;
             else
-                inst = 0;
+                banda.Instrumento = 0;
 
-
-            int numintegrantes;
             if (NumInt.SelectedValue != null)
             {
-                numintegrantes = ((Item)NumInt.SelectedValue).Value;
+                banda.NumIntegrantes = ((Item)NumInt.SelectedValue).Value;
             }
             else
-                numintegrantes = 0;
+                banda.NumIntegrantes = 0;
 
-            int diapreferencial;
             if (DiaPref.SelectedValue != null)
             {
-                //diapreferencial = (int)DiaPref.SelectedItem;
-                diapreferencial = ((Item)DiaPref.SelectedValue).Value;
+                banda.DiaPreferencial = ((Item)DiaPref.SelectedValue).Value;
             }
             else
-                diapreferencial = 0;
+                banda.DiaPreferencial = 0;
 
 
+            var att = new Atualiza(banda, nomeantes);
 
-            if (c.atualizar(nomeantes , NomeBandaTxT.Text, numintegrantes, NomeMusicaTxT.Text, diapreferencial, inst))
+            if (att.atualizar())
             {
                 MessageBox.Show("Edição feita com sucesso!");
                 new TelaPrincipal().Show();

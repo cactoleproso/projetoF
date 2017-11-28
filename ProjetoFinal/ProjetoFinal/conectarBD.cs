@@ -13,49 +13,39 @@ namespace ProjetoFinal
     {
 
         private MySqlCommand cmd;
-
+        private MySqlDataReader dados;
         public ConectarBD()
         {
             cmd = new MySqlCommand();
             cmd.Connection = new MySqlConnection("Server=localhost;Database=test;Uid=root;Pwd=root");
         }
 
-        public bool Insert()
+        public bool ExecuteNoN()
         {
             try
             {
                 cmd.ExecuteNonQuery();
                 return true;
             }
-            catch (MySqlException a)
+            catch (Exception e)
             {
                 return false;
             }
+
            
         }
-        public bool fazerlogin(string nome, string senha)
+        public bool ExecuteReader()
         {
-            bool result = false;
             try
             {
-                cmd.Connection.Open();
-                cmd.CommandText = "SELECT * FROM login WHERE nome= @loguser AND senha = @logsenha;";
-                cmd.Parameters.AddWithValue("@loguser", nome);
-                cmd.Parameters.AddWithValue("@logsenha", senha);
-                MySqlDataReader dados = cmd.ExecuteReader();
-                result = dados.HasRows;
-
-
+                dados = cmd.ExecuteReader();
             }
             catch (MySqlException e)
             {
                 throw new Exception(e.Message);
             }
-            finally
-            {
-                cmd.Connection.Close();
-            }
-            return result;
+            return dados.HasRows;
+            
         }
         public void AbrirConexao()
         {
@@ -74,34 +64,28 @@ namespace ProjetoFinal
             cmd.Parameters.AddWithValue("@diapref", banda.DiaPreferencial);
             cmd.Parameters.AddWithValue("@instru", banda.Instrumento);
         }
+        public void AddParametersUP(Banda banda, string qr, string nomeantes)
+        {
+            cmd.CommandText = qr;
+            cmd.Parameters.AddWithValue("@nome", nomeantes);
+            cmd.Parameters.AddWithValue("@nome1", banda.Nome);
+            cmd.Parameters.AddWithValue("@numint", banda.NumIntegrantes);
+            cmd.Parameters.AddWithValue("@nomemusica", banda.NomeMusica);
+            cmd.Parameters.AddWithValue("@diapref", banda.DiaPreferencial);
+            cmd.Parameters.AddWithValue("@instru", banda.Instrumento);
+        }
+        public void AddParametersLG(Administrador Administrador, string qr)
+        {
+            cmd.CommandText = qr;
+            cmd.Parameters.AddWithValue("@loguser", Administrador.Username);
+            cmd.Parameters.AddWithValue("@logsenha", Administrador.Password);
+        }
         public MySqlCommand atualizarlista(string nome)
         {
             cmd.Connection = new MySqlConnection("Server=localhost;Database=test;Uid=root;Pwd=root");
             cmd.CommandText = "SELECT * FROM bandas;";
             cmd.Connection.Open();
             return cmd;
-        }
-
-        public bool atualizar(Banda banda)
-        {
-           
-            string qr = "UPDATE bandas SET nome = @nome1, numint = @numint, nomemusica = @nomemusica, diapref = @diapref, instru = @instru  WHERE nome = @nome;";
-
-            AddParameters(banda, qr);
-            AbrirConexao();
-            try
-            {
-                cmd.ExecuteNonQuery();
-                return true;
-            }
-            catch (MySqlException a)
-            {
-                return false;
-            }
-            finally
-            {
-                FecharConexao();
-            }
         }
     }
 }

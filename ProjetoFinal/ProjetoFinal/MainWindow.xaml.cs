@@ -27,9 +27,14 @@ namespace ProjetoFinal
         }
         private void LogarBT_Click(object sender, RoutedEventArgs e)
         {
-            ConectarBD conectar = new ConectarBD();
-            bool variavel = conectar.fazerlogin(UsuarioTxT.Text, SenhaTxT.Password);
-            if (variavel)
+            var Administrador = new Administrador()
+            {
+                Username = UsuarioTxT.Text,
+                Password = SenhaTxT.Password
+            };
+            var login = new Login(Administrador);
+            
+            if (login.logar())
             {
                 MessageBox.Show("Bem vindo!");
                 new TelaPrincipal().Show();
