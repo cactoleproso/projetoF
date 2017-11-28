@@ -26,6 +26,7 @@ namespace ProjetoFinal
             ListaBandas.Items.Clear();
             ConectarBD c = new ConectarBD();
             MySqlCommand cmd;
+            string nome;
             cmd = c.atualizarlista(PesquisaTxT.Text);
             try
             {
@@ -33,13 +34,13 @@ namespace ProjetoFinal
                 ler = cmd.ExecuteReader();
                 while (ler.Read())
                 {
-                    string snome = ler.GetString("nome");
-                    ListaBandas.Items.Add(snome);
+                    nome = ler.GetString("nome");
+                    ListaBandas.Items.Add(nome);
                 }
             }
-            catch (Exception i)
+            catch (Exception e)
             {
-                MessageBox.Show(i.Message);
+                MessageBox.Show(e.Message);
             }
             finally
             {
@@ -55,7 +56,7 @@ namespace ProjetoFinal
 
         private void EditaBT_Click(object sender, RoutedEventArgs e)
         {
-            new Editar().Show();
+            new Editar(ListaBandas.SelectedItem.ToString()).Show();
             this.Close();
         }
 

@@ -19,6 +19,7 @@ namespace ProjetoFinal
     /// </summary>
     public partial class Editar : Window
     {
+        public string nomeantes;
         private class Item
         {
             public string Name;
@@ -35,9 +36,9 @@ namespace ProjetoFinal
             }
 
         }
-        public Editar()
+        public Editar(string x)
         {
-
+            nomeantes = x;
             InitializeComponent();
             NumInt.Items.Add(new Item("1", 1));
             NumInt.Items.Add(new Item("2", 2));
@@ -90,7 +91,10 @@ namespace ProjetoFinal
             }
             else
                 diapreferencial = 0;
-            if (c.cadastrar(NomeBandaTxT.Text, numintegrantes, NomeBandaTxT.Text, diapreferencial, inst))
+
+
+
+            if (c.atualizar(nomeantes , NomeBandaTxT.Text, numintegrantes, NomeMusicaTxT.Text, diapreferencial, inst))
             {
                 MessageBox.Show("Edição feita com sucesso!");
                 new TelaPrincipal().Show();

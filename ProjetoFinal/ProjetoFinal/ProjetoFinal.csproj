@@ -60,9 +60,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Administrador.cs" />
+    <Compile Include="Atualiza.cs" />
+    <Compile Include="Banda.cs" />
     <Compile Include="Cadastramento.xaml.cs">
       <DependentUpon>Cadastramento.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Cadastro.cs" />
     <Compile Include="conectarBD.cs" />
     <Compile Include="Editar.xaml.cs">
       <DependentUpon>Editar.xaml</DependentUpon>

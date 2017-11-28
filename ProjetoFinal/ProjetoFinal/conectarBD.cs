@@ -19,6 +19,20 @@ namespace ProjetoFinal
             cmd = new MySqlCommand();
             cmd.Connection = new MySqlConnection("Server=localhost;Database=test;Uid=root;Pwd=root");
         }
+
+        public bool Insert()
+        {
+            try
+            {
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (MySqlException a)
+            {
+                return false;
+            }
+           
+        }
         public bool fazerlogin(string nome, string senha)
         {
             bool result = false;
@@ -43,32 +57,23 @@ namespace ProjetoFinal
             }
             return result;
         }
-
-        public bool cadastrar(string nome, int numero, string nomemusica, int dia, int instru)
+        public void AbrirConexao()
         {
-            bool funcionou = false;
             cmd.Connection.Open();
-            cmd.CommandText = "INSERT INTO bandas (nome, numint, nomemusica, diapref, instru) VALUES (@nome, @numint, @nomemusica, @diapref, @instru);";
-            cmd.Parameters.AddWithValue("@nome", nome);
-            cmd.Parameters.AddWithValue("@numint", numero);
-            cmd.Parameters.AddWithValue("@nomemusica", nome);
-            cmd.Parameters.AddWithValue("@diapref", dia);
-            cmd.Parameters.AddWithValue("@instru", instru);
-            try
-            {
-                cmd.ExecuteNonQuery();
-                return funcionou = true;
-            }
-            catch (MySqlException a)
-            {
-                throw new Exception(a.Message);
-            }
-            finally
-            {
-                cmd.Connection.Close();
-            }
         }
-
+        public void FecharConexao()
+        {
+            cmd.Connection.Close();
+        }
+        public void AddParameters(Banda banda, string qr)
+        {
+            cmd.CommandText = qr;
+            cmd.Parameters.AddWithValue("@nome", banda.Nome);
+            cmd.Parameters.AddWithValue("@numint", banda.NumIntegrantes);
+            cmd.Parameters.AddWithValue("@nomemusica", banda.NomeMusica);
+            cmd.Parameters.AddWithValue("@diapref", banda.DiaPreferencial);
+            cmd.Parameters.AddWithValue("@instru", banda.Instrumento);
+        }
         public MySqlCommand atualizarlista(string nome)
         {
             cmd.Connection = new MySqlConnection("Server=localhost;Database=test;Uid=root;Pwd=root");
@@ -77,28 +82,25 @@ namespace ProjetoFinal
             return cmd;
         }
 
-        public bool atualizar(string nome, string nomeed, int numero, string nomemusica, int dia, int instru)
+        public bool atualizar(Banda banda)
         {
-            bool funcionou = false;
-            cmd.Connection.Open();
-            cmd.CommandText = "UPDATE bandas SET nome = @nome1  WHERE nome = @nome"//"INSERT INTO bandas (nome, numint, nomemusica, diapref, instru) VALUES (@nome, @numint, @nomemusica, @diapref, @instru);";
-            cmd.Parameters.AddWithValue("@nome", nome);
-            cmd.Parameters.AddWithValue("@numint", numero);
-            cmd.Parameters.AddWithValue("@nomemusica", nome);
-            cmd.Parameters.AddWithValue("@diapref", dia);
-            cmd.Parameters.AddWithValue("@instru", instru);
+           
+            string qr = "UPDATE bandas SET nome = @nome1, numint = @numint, nomemusica = @nomemusica, diapref = @diapref, instru = @instru  WHERE nome = @nome;";
+
+            AddParameters(banda, qr);
+            AbrirConexao();
             try
             {
                 cmd.ExecuteNonQuery();
-                return funcionou = true;
+                return true;
             }
             catch (MySqlException a)
             {
-                throw new Exception(a.Message);
+                return false;
             }
             finally
             {
-                cmd.Connection.Close();
+                FecharConexao();
             }
         }
     }

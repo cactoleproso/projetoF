@@ -36,7 +36,11 @@ namespace ProjetoFinal
                 this.Close();
             }
             else
-                MessageBox.Show("usuario/senha incorreto");
+            {
+                MessageBox.Show("Usuário ou senha inválidos");
+                UsuarioTxT.Clear();
+                SenhaTxT.Clear();
+            }
         }
     }
 }
