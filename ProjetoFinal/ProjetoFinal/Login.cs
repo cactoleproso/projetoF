@@ -15,12 +15,12 @@ namespace ProjetoFinal
         public Login(Administrador Administrador)
         {
             this.Administrador = Administrador;
-            con = new ConectarBD();
+            con = new ConectarBD(qr);
         }
 
         public bool logar()
         {
-            con.AddParametersLOGIN(this.Administrador, qr);
+            con.AddParametersLOGIN(this.Administrador);
             con.AbrirConexao();
             
             if(con.ExecuteReader())

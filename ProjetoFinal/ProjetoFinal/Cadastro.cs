@@ -11,16 +11,16 @@ namespace ProjetoFinal
         private Banda Banda { get; set; }
         private ConectarBD con { get; set; }
 
-        const string qr = "INSERT INTO bandas(nome, numint, nomemusica, diapref, instru) VALUES(@nome, @numint, @nomemusica, @diapref, @instru);";
+        const string qr = "INSERT INTO banda(nome, numint, nomemusica, diapref, instru) VALUES(@nome, @numint, @nomemusica, @diapref, @instru);";
         public Cadastro(Banda Banda)
         {
             this.Banda = Banda;
-            con = new ConectarBD();
+            con = new ConectarBD(qr);
         }
 
         public bool Cadastrar()
         {
-            con.AddParametersCADASTRAR(this.Banda, qr);
+            con.AddParametersCADASTRAR(this.Banda);
             con.AbrirConexao();
 
             if(con.ExecuteNoN())

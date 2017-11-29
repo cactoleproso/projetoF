@@ -20,11 +20,12 @@ namespace ProjetoFinal
     /// </summary>
     public partial class TelaPrincipal : Window
     {
+        const string qr = "SELECT * FROM banda;";
         public TelaPrincipal()
         {
             InitializeComponent();
             ListaBandas.Items.Clear();
-            ConectarBD c = new ConectarBD();
+            ConectarBD c = new ConectarBD(qr);
             MySqlCommand cmd;
             string nome;
             cmd = c.atualizarlista(PesquisaTxT.Text);
@@ -70,7 +71,7 @@ namespace ProjetoFinal
         {
             //atualizar a listbox de bandas toda vez que o textbox for alterado, caso fosse outra maneira não seria possível filtrar a listbox
             ListaBandas.Items.Clear();
-            ConectarBD c = new ConectarBD();
+            ConectarBD c = new ConectarBD(qr);
             MySqlCommand cmd;
             cmd = c.atualizarlista(PesquisaTxT.Text);
             try
@@ -125,6 +126,30 @@ namespace ProjetoFinal
                 MessageBox.Show("Banda excluída com sucesso!");
             }
             
+        }
+
+        private void Exibir_Click(object sender, RoutedEventArgs e)
+        {
+            string qry = "SELECT * FROM Banda WHERE nome = @nome";
+            string nome = ListaBandas.SelectedItem.ToString();
+            var con = new ConectarBD(qr);
+            con.AddParametersDELETAR(nome);
+            con.ExecuteReader();
+            var banda = new Banda();
+
+            if(con.rd.HasRows)
+            {
+                while(con.rd.Read())
+                {
+                    banda.Nome = con.rd.GetString("nome");
+                    banda.NumIntegrantes = con.rd.GetInt32("numint");
+                    banda.NomeMusica = con.rd.GetString("nomemusica");
+                    banda.Instrumento = con.rd.GetInt32("instru");
+                }
+            }
+            string format = "Nome da Banda: {0}" +
+                ""
+            MessageBox.Show()
         }
     }
 }

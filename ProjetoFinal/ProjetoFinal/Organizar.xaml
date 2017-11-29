@@ -11,9 +11,6 @@
         <Label Content="Dia 2 Bloco 1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="286,9,0,0"/>
         <Label Content="Dia 1 Bloco 2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,213,0,0"/>
         <Label Content="Dia 2 Bloco 2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="286,213,0,0"/>
-        <Button x:Name="OrganizaBT" Content="Organizar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="121" Margin="559,40,0,0" Height="73"/>
-        <Button x:Name="MudaDiaBT" Content="Mudar Dia&#xD;&#xA;(selecione apenas 1)" HorizontalAlignment="Left" VerticalAlignment="Top" Width="121" Margin="559,118,0,0" Height="73"/>
-        <Button x:Name="Voltarbt" Content="Voltar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="121" Margin="559,369,0,0" Height="43"/>
-
+        <Button x:Name="Voltarbt" Content="Voltar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Margin="542,40,0,0" Height="372" Click="Voltarbt_Click"/>
     </Grid>
 </Window>

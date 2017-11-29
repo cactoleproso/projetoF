@@ -20,6 +20,7 @@ namespace ProjetoFinal
     /// </summary>
     public partial class Cadastramento : Window
     {
+
         private class Item
         {
             public string Name;
@@ -36,7 +37,6 @@ namespace ProjetoFinal
             }
 
         }
-
         public Cadastramento()
         {
 
