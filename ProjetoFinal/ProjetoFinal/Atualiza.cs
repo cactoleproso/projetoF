@@ -19,11 +19,11 @@ namespace ProjetoFinal
             this.nomeantes = nomeantes;
         }
 
-        public bool atualizar()
+        public bool Atualizar()
         {
             string qr = "UPDATE bandas SET nome = @nome1, numint = @numint, nomemusica = @nomemusica, diapref = @diapref, instru = @instru  WHERE nome = @nome;";
 
-            con.AddParametersUP(this.Banda, qr, this.nomeantes);
+            con.AddParametersUPDATE(this.Banda, qr, this.nomeantes);
             con.AbrirConexao();
             if (con.ExecuteNoN())
             {
@@ -32,6 +32,11 @@ namespace ProjetoFinal
             }
             con.FecharConexao();
             return false;
+        }
+
+        public void AtualizaLista()
+        {
+
         }
     }
 }

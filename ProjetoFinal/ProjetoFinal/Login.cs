@@ -20,7 +20,7 @@ namespace ProjetoFinal
 
         public bool logar()
         {
-            con.AddParametersLG(this.Administrador, qr);
+            con.AddParametersLOGIN(this.Administrador, qr);
             con.AbrirConexao();
             
             if(con.ExecuteReader())

@@ -54,11 +54,6 @@ namespace ProjetoFinal
             this.Close();
         }
 
-        private void NomeBandaTxT_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void EditarBT_Click(object sender, RoutedEventArgs e)
         {
            
@@ -89,7 +84,7 @@ namespace ProjetoFinal
 
             var att = new Atualiza(banda, nomeantes);
 
-            if (att.atualizar())
+            if (att.Atualizar())
             {
                 MessageBox.Show("Edição feita com sucesso!");
                 new TelaPrincipal().Show();

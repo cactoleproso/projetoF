@@ -71,6 +71,7 @@
     <Compile Include="Editar.xaml.cs">
       <DependentUpon>Editar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Exclui.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Organizar.xaml.cs">
       <DependentUpon>Organizar.xaml</DependentUpon>

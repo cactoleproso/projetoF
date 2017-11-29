@@ -11,7 +11,7 @@
         <Label Content="Dia preferencial:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,93,0,0" Width="173"/>
         <Label Content="Usará instrumentos da escola?" HorizontalAlignment="Left" Margin="10,117,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="NomeMusicaTxT" HorizontalAlignment="Left" Height="18" Margin="109,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="NomeBandaTxT" HorizontalAlignment="Left" Height="18" Margin="107,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="NomeBandaTxT_TextChanged"/>
+        <TextBox x:Name="NomeBandaTxT" HorizontalAlignment="Left" Height="18" Margin="107,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="DiaPref" HorizontalAlignment="Left" Margin="107,98,0,0" VerticalAlignment="Top" Width="40" Height="19"/>
         <ComboBox x:Name="NumInt" HorizontalAlignment="Left" Margin="143,45,0,0" VerticalAlignment="Top" Width="50" Height="19"/>
         <RadioButton x:Name="SIMradio" Content="Sim" HorizontalAlignment="Left" Margin="186,121,0,0" VerticalAlignment="Top"/>

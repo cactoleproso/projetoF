@@ -6,24 +6,22 @@ using System.Threading.Tasks;
 
 namespace ProjetoFinal
 {
-    class Cadastro
+    class Exclui
     {
-        private Banda Banda { get; set; }
         private ConectarBD con { get; set; }
-
-        const string qr = "INSERT INTO bandas(nome, numint, nomemusica, diapref, instru) VALUES(@nome, @numint, @nomemusica, @diapref, @instru);";
-        public Cadastro(Banda Banda)
+        private string nome { get; set; }
+        const string qr = "DELETE FROM bandas WHERE nome = @nome;";
+        public Exclui(string nome)
         {
-            this.Banda = Banda;
             con = new ConectarBD();
+            this.nome = nome;
         }
 
-        public bool Cadastrar()
+        public bool excluir()
         {
-            con.AddParametersCADASTRAR(this.Banda, qr);
+            con.AddParametersDELETAR(this.nome, qr);
             con.AbrirConexao();
-
-            if(con.ExecuteNoN())
+            if (con.ExecuteNoN())
             {
                 con.FecharConexao();
                 return true;
@@ -34,5 +32,8 @@ namespace ProjetoFinal
                 return false;
             }
         }
+
+
+
     }
 }

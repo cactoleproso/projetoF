@@ -107,5 +107,24 @@ namespace ProjetoFinal
                     ListaBandas.Items.Add(items[i]);
             }
         }
+
+        private void ExcluirBT_Click(object sender, RoutedEventArgs e)
+        {
+            var banda = new Banda();
+            string nome = ListaBandas.SelectedItem.ToString();
+            var exc = new Exclui(nome);
+
+            string format = "Você tem certeza que deseja excluir a banda {0}?";
+            
+            
+            
+
+            if (MessageBox.Show(String.Format(format, nome), "DELETAR", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                exc.excluir();
+                MessageBox.Show("Banda excluída com sucesso!");
+            }
+            
+        }
     }
 }

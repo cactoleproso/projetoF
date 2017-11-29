@@ -55,7 +55,7 @@ namespace ProjetoFinal
         {
             cmd.Connection.Close();
         }
-        public void AddParameters(Banda banda, string qr)
+        public void AddParametersCADASTRAR(Banda banda, string qr)
         {
             cmd.CommandText = qr;
             cmd.Parameters.AddWithValue("@nome", banda.Nome);
@@ -64,7 +64,7 @@ namespace ProjetoFinal
             cmd.Parameters.AddWithValue("@diapref", banda.DiaPreferencial);
             cmd.Parameters.AddWithValue("@instru", banda.Instrumento);
         }
-        public void AddParametersUP(Banda banda, string qr, string nomeantes)
+        public void AddParametersUPDATE(Banda banda, string qr, string nomeantes)
         {
             cmd.CommandText = qr;
             cmd.Parameters.AddWithValue("@nome", nomeantes);
@@ -74,11 +74,17 @@ namespace ProjetoFinal
             cmd.Parameters.AddWithValue("@diapref", banda.DiaPreferencial);
             cmd.Parameters.AddWithValue("@instru", banda.Instrumento);
         }
-        public void AddParametersLG(Administrador Administrador, string qr)
+        public void AddParametersLOGIN(Administrador Administrador, string qr)
         {
             cmd.CommandText = qr;
             cmd.Parameters.AddWithValue("@loguser", Administrador.Username);
             cmd.Parameters.AddWithValue("@logsenha", Administrador.Password);
+        }
+        public void AddParametersDELETAR(string nome, string qr)
+        {
+            cmd.CommandText = qr;
+            cmd.Parameters.AddWithValue("@nome", nome);
+            
         }
         public MySqlCommand atualizarlista(string nome)
         {
