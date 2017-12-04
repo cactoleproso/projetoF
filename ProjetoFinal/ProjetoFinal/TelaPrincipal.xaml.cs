@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 
+
 namespace ProjetoFinal
 {
     /// <summary>
@@ -130,26 +131,35 @@ namespace ProjetoFinal
 
         private void Exibir_Click(object sender, RoutedEventArgs e)
         {
-            string qry = "SELECT * FROM Banda WHERE nome = @nome";
-            string nome = ListaBandas.SelectedItem.ToString();
-            var con = new ConectarBD(qr);
-            con.AddParametersDELETAR(nome);
-            con.ExecuteReader();
-            var banda = new Banda();
-
-            if(con.rd.HasRows)
+            
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = new MySqlConnection("Server=localhost;Database=test;Uid=root;Pwd=root");
+            cmd.CommandText = "SELECT * FROM banda WHERE nome= @nome";
+            cmd.Parameters.AddWithValue("@nome", ListaBandas.SelectedItem.ToString());
+            cmd.Connection.Open();
+            MySqlDataReader ler = cmd.ExecuteReader();
+            Banda b = new Banda();
+            if(ler.HasRows)
             {
-                while(con.rd.Read())
+                while(ler.Read())
                 {
-                    banda.Nome = con.rd.GetString("nome");
-                    banda.NumIntegrantes = con.rd.GetInt32("numint");
-                    banda.NomeMusica = con.rd.GetString("nomemusica");
-                    banda.Instrumento = con.rd.GetInt32("instru");
+                    b.Nome = ler.GetString("nome");
+                    b.NumIntegrantes = ler.GetInt32("numint");
+                    b.NomeMusica = ler.GetString("nomemusica");
+                    b.Instrumento = ler.GetInt32("instru");
+                    b.DiaPreferencial = ler.GetInt32("diapref");
                 }
             }
-            string format = "Nome da Banda: {0}" +
-                ""
-            MessageBox.Show()
+            string instru;
+            if(b.Instrumento == 1)
+            {
+                instru = "sim";
+            }
+            else
+                instru = "não";
+            string s = string.Format(" O nome da banda é: {0} \n O número de integrantes é: {1} \n O nome da música é: {2} \n Vai usar instrumentos da escola?: {3} \n Dia preferencial? {4}", b.Nome, b.NumIntegrantes, b.NomeMusica, instru, b.DiaPreferencial);
+            MessageBox.Show(s);
         }
+        
     }
 }
