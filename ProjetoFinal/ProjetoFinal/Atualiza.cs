@@ -10,19 +10,19 @@ namespace ProjetoFinal
     {
         private Banda Banda { get; set; }
         private ConectarBD con { get; set; }
-        private string nomeantes { get; set; }
+        private string nomeAntes { get; set; }
         const string qr = "UPDATE banda SET nome = @nome1, numint = @numint, nomemusica = @nomemusica, diapref = @diapref, instru = @instru  WHERE nome = @nome;";
         public Atualiza(Banda Banda, string nomeantes)
         {
             this.Banda = Banda;
             con = new ConectarBD(qr);
-            this.nomeantes = nomeantes;
+            this.nomeAntes = nomeantes;
         }
 
         public bool Atualizar()
         {
 
-            con.AddParametersUPDATE(this.Banda, this.nomeantes);
+            con.AddParametersUPDATE(this.Banda, this.nomeAntes);
             con.AbrirConexao();
             if (con.ExecuteNoN())
             {
@@ -32,10 +32,6 @@ namespace ProjetoFinal
             con.FecharConexao();
             return false;
         }
-
-        public void AtualizaLista()
-        {
-
-        }
+       
     }
 }
